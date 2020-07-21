@@ -8,5 +8,5 @@ will be updated as more pages are complete.
 
 <img
     src="./src/assets/screenShots/loginScreen.png"
-    width="50%"
+    width="33.3%"
     alt="sign-in-page"/>
