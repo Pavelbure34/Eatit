@@ -1,11 +1,11 @@
-This is personal and Denison Enterprises Project Eat!T.
-It allows college students and staffs order food in the mobile devices
+<h2>Denison Enterprises Project: Eat!T</h2>
+Eat!T allows college students and staffs order food in the mobile devices
 and pick up when done.
-
+<!-- blank line -->
 It is made with Ionic React, AWS Amplify, Firebase.
 This project is to be launched in August. This markdown
 will be updated as more pages are complete.
-
+<h2>Screenshots</h2>
 <img
     src="./src/assets/screenShots/loginScreen.png"
     width="33.3%"
