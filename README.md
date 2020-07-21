@@ -6,4 +6,7 @@ It is made with Ionic React, AWS Amplify, Firebase.
 This project is to be launched in August. This markdown
 will be updated as more pages are complete.
 
-![Sign In Screen](./src/assets/screenShots/loginScreen.png)
+<img
+    src="./src/assets/screenShots/loginScreen.png"
+    width="50%"
+    alt="sign-in-page"/>
