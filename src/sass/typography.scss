@@ -1,0 +1,53 @@
+/*for headers*/
+h1, h2, h3, h4, h5, h6{
+    font-family: titleFont;
+}
+
+h1{
+    line-height: 1.9rem;
+}
+
+h2{
+    line-height: 1.8rem;
+}
+
+h3{
+    line-height: 1.7rem;
+}
+
+h4{
+    line-height: 1.6rem;
+}
+
+h5{
+    line-height: 1.5rem;
+}
+
+h6{
+    line-height: 1.4rem;
+}
+
+/*for paragraph and subscriptions*/
+p, sub{
+    font-family: contentFont;
+    line-height: 1.2rem;
+}
+
+p{
+    font-size: 1.3rem;
+}
+
+sub{
+    font-size: 1.1rem;
+}
+
+/*for buttons, inputs and such*/
+.btn, label{
+    font-family: LinkFont;
+    font-size: 1.2rem;
+}
+
+.input{
+    font-family: contentFont;
+    font-size: 1.3rem;
+}

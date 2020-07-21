@@ -1,0 +1,25 @@
+/*Styles to be used for across the pages*/
+
+/*for anchor*/
+a{
+    color:inherit;
+    text-decoration: none;
+}
+
+/*for input*/
+.input{
+    padding: 2vh 1vw 2vh 1vw;
+}
+
+/*visibility*/
+.visible{
+    display:block;
+}
+
+.invisible{
+    display:none;
+}
+
+.center-text{
+    text-align: center;
+}

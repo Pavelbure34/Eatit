@@ -1,0 +1,76 @@
+/*before signing up*/
+#signin,
+#signup,
+#forgotpassword{
+    display: grid;
+    width: 100%;
+    height:100vh;
+    margin: 0;
+
+    .main-content{
+        width: 95%;
+        @media (min-width: $tablet-break) {
+            width: 70%;
+        }
+    }
+}
+
+#signin{
+    grid-template-rows: 35vh auto;
+    @media screen and (min-width: $tablet-break) {
+        grid-template-rows: 50vh auto;
+    }
+
+    grid-template-areas: 
+        "header"
+        "main";
+
+    header{
+        img{
+            display: block;
+            margin: 5vh auto 0 auto;
+            width:50vw;
+        }
+    }
+
+    .main-content{
+        margin: auto auto 3vh auto;
+        @media (min-width: $tablet-break) {
+            margin: auto auto 10vh auto;
+        }
+
+        .btn{
+            margin-bottom: 1vh;
+        }
+    }
+}
+
+#signup,
+#forgotpassword{
+    grid-template-rows: 10vh 80vh 10vh;
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+
+    header{
+        display:flex;
+        padding: 1vh 2vw 1vh 2vw;
+        justify-content: space-between;
+        align-items: center;
+       
+        section{
+            
+            .btn{
+                border: 1px solid #FFFFFF;
+            }
+        }
+    }
+
+    .main-content{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 auto 0 auto;
+    }
+}

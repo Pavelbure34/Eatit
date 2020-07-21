@@ -1,0 +1,22 @@
+$tablet-break: 700px;
+
+@import "~bootstrap/scss/bootstrap.scss";
+@import './sass/custom-fonts.scss';
+@import './sass/common.scss';
+@import './sass/animation.scss';
+@import './sass/typography.scss';
+@import './sass/layouts.scss';
+
+body{
+    font-size: 18px;
+    background-color: #ffc409;
+}
+
+/*layout debugging*/
+// header {background-color: red;}
+// .main-content {background-color: blue;}
+// footer {background-color: brown;}
+
+header {grid-column: header;}
+.main-content {grid-area: main;}
+footer {grid-area: footer;}
