@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom
 import {IonApp} from '@ionic/react';
 // import { IonApp, IonRouterOutlet } from '@ionic/react';
 // import { IonReactRouter } from '@ionic/react-router';
-import {Signin, Signup} from './pages';
+import {Signin, Signup, ForgotPassword} from './pages';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -44,7 +44,7 @@ const App = ()=>{
         <Signup/>
       </Route>
       <Route exact path="/forgotpassword">
-        <Signup/>
+        <ForgotPassword/>
       </Route>
       <Redirect to="/signin"/>
     </>;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Modal, Button} from 'react-bootstrap';
 
 const Popup = (props)=>{
@@ -8,13 +8,13 @@ const Popup = (props)=>{
     return (
         <Modal show={show} onHide={onClose} centered>
             <Header closeButton>
-                <Title>{header}</Title>
+                <Title><h3>{header}</h3></Title>
             </Header>
             <Body>
-                {children}
+                <p>{children}</p>
             </Body>
             <Footer>
-                <Button variant="secondary" onClick={onClose}>
+                <Button variant="success" onClick={onClose}>
                     Close
                 </Button>
             </Footer>

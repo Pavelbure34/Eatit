@@ -1,7 +1,7 @@
 const SampleSchools = [
     {
         id:0,
-        name:"Choose...",
+        name:"Choose School",
         domain:""
     },
     {

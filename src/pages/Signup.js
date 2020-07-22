@@ -1,48 +1,38 @@
 import React, {useState} from 'react';
-import {NavLink as Link} from 'react-router-dom';
-import {SampleSchools as Schools} from '../data';
-import {IsEmptyInput} from '../funcs';
+import {
+    IsEmptyInput, IsPasswordSafe, ProperizeInput,
+    SendPinNumberToEmail, AuthenticateEmail,
+    ClearWhiteSpace, SignUp
+} from '../funcs';
 import {UserInfoHooks, AuthenHooks, Popuphooks} from '../hooks';
-import {Icon, Popup} from '../components';
+import {
+    Icon, Popup, SelectSchool, Input, Button,
+    Tabs, Tab
+} from '../components';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
 const Signup = ()=>{
     const [key, setKey] = useState(1);
-    const [domain, setDomain] = useState('');
+    const [termsRead, setTermsRead] = useState(false);
 
     const {
-        username, setUsername,
-        firstName, setFirstName,
-        lastName, setLastName,
-        email, setEmail,
-        password, setPassword,
-        schoolID, setSchoolID,
-        school, setSchool
+        username, email, firstName, lastName, 
+        domain, password, schoolID, school, 
+        setUsername, setDomain, setFirstName, setLastName,
+        setPassword, setSchoolID, setSchool
     } = UserInfoHooks();
-    const {pin, setPin} = AuthenHooks();
+    const {
+        pin, setPin,
+        isAuthenticated, setIsAuthenticated
+    } = AuthenHooks();
     let {
         show, popupMessage, popupTitle,
         showPopup, Close
     } = Popuphooks();
 
-    const renderSchoolOptions = ()=>{
-        return Schools.map(each=>{
-            const {id, name, domain} = each;
-            return (
-                <option key={id} value={`${name},${domain}`}>
-                    {name}
-                </option>
-            );
-        });
-    };
-
-    const SendPinNumberToEmail = ()=>{
-        setEmail(username + domain);
-        //send pin
-    };
-
-    const AuthenticateEmail = ()=>{
-        //authenticate
+    let Inputs = {
+        username, email, firstName, lastName,
+        password, schoolID, school
     };
 
     const TopBtnOnClickEvent = ()=>{
@@ -52,6 +42,7 @@ const Signup = ()=>{
             case 2:
                 setKey(key - 1);
             default:
+                //key == 1, button is link button.
                 break;
         }
     };
@@ -59,248 +50,151 @@ const Signup = ()=>{
     const BottomBtnOnClickEvent = ()=>{
         switch (key){
             case 4:
+                if (IsEmptyInput(pin))
+                    showPopup("Warning", "Empty Inputs");
+                else
+                    if (isAuthenticated){
+                        
+                        setKey(key + 1);
+                    }   
                 break;
             case 3:
-                //shoot the authenticate pin number to email
-                if (IsEmptyInput(pin)){
-                    showPopup( "Warning", "Empty Inputs");
-                }else{
-                    setKey(key + 1);
-                }   
+                setKey(key + 1);
                 break;
             case 2:
-                if (IsEmptyInput(schoolID) || IsEmptyInput(firstName) || IsEmptyInput(lastName)){
-                    showPopup( "Warning", "Empty Inputs");
-                }else{
+                if (IsEmptyInput(schoolID) || IsEmptyInput(firstName) || IsEmptyInput(lastName))
+                    showPopup("Warning", "Empty Inputs");
+                else if (!termsRead)
+                    showPopup("Warning", "Please read the terms");
+                else{
+                    setUsername(ProperizeInput(username));
+                    setSchoolID(ClearWhiteSpace(schoolID));
+                    setFirstName(ProperizeInput(firstName));
+                    setLastName(ProperizeInput(lastName));
                     setKey(key + 1);
-                }   
+                }
                 break;
             default:
-                setEmail(username + domain);
-                if (IsEmptyInput(username) || IsEmptyInput(password) || IsEmptyInput(email)){
-                    showPopup( "Warning", "Empty Inputs");
-                    //check out for password security
-                }else{
-                    setKey(key + 1);
-                }   
-        }
-    };
-
-    const renderTabs = ()=>{
-        switch (key){
-            case 4:
-                return (
-                    <section>
-                        <label for="exampleFormControlSelect1">Confirm Your Information</label>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={school}
-                                aria-describedby="button-addon1"
-                                readOnly
-                            />
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={schoolID}
-                                aria-describedby="button-addon1"
-                                readOnly
-                            />
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={username}
-                                aria-describedby="button-addon1"
-                                readOnly
-                            />
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={email}
-                                aria-describedby="button-addon1"
-                                readOnly
-                            />
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={`${firstName} ${lastName}`}
-                                aria-describedby="button-addon1"
-                                readOnly
-                            />
-                        </div>
-                    </section>
-                );
-            case 3:
-                return (
-                    <section>
-                        <div>
-                            <label for="exampleFormControlSelect1">Authentication</label>
-                            <div className="input-group mb-2">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={pin}
-                                    placeholder="Pin Number"
-                                    onChange={e=>setPin(e.target.value)}
-                                    aria-describedby="button-addon1"/>
-                            </div>
-                            <button
-                                type="button"
-                                className="btn btn-success btn-lg btn-block">
-                                Send Authentication Pin to Email
-                            </button>
-                        </div>
-                    </section>
-                );
-            case 2:
-                return (
-                    <section>
-                        <label for="exampleFormControlSelect1">Secondary Information</label>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={schoolID}
-                                onChange={e=>setSchoolID(e.target.value)}
-                                placeholder="School ID Number"
-                                aria-describedby="button-addon1"/>
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={firstName}
-                                onChange={e=>setFirstName(e.target.value)}
-                                placeholder="First Name"
-                                aria-describedby="button-addon1"/>
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={lastName}
-                                onChange={e=>setLastName(e.target.value)}
-                                placeholder="Last Name"
-                                aria-describedby="button-addon1"/>
-                        </div>
-                    </section>
-                );
-            default:
-                return (
-                    <section>
-                        <div className="form-group mb-2">
-                            <label for="exampleFormControlSelect1">Select your School</label>
-                            <select
-                                className="form-control"
-                                onChange={e=>{
-                                    let data = e.target.value.split(",");
-                                    setSchool(data[0]);
-                                    setDomain(data[1]);
-                                }}
-                                id="exampleFormControlSelect1"
-                            >
-                                {renderSchoolOptions()}
-                            </select>
-                        </div>
-                        <label for="exampleFormControlSelect1">Primary Information</label>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={username}
-                                onChange={e=>setUsername(e.target.value)}
-                                placeholder="Username"
-                                aria-describedby="button-addon1"/>
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={username +  domain}
-                                placeholder="john.d1@school.edu"
-                                aria-describedby="button-addon1"
-                                readOnly/>
-                        </div>
-                        <div className="input-group mb-2">
-                            <input
-                                type="password" 
-                                className="form-control"
-                                value={password}
-                                onChange={e=>setPassword(e.target.value)}
-                                placeholder="Password"
-                                aria-describedby="button-addon1"/>
-                        </div>
-                    </section>
-                );
+                if (IsEmptyInput(domain))
+                    showPopup("Warning", "Please choose school.");
+                else if (IsEmptyInput(username) || IsEmptyInput(password))
+                    showPopup("Warning", "Empty inputs");
+                else{
+                    if (IsPasswordSafe(password)){
+                        setUsername(ProperizeInput(username));
+                        setKey(key + 1);
+                    } else
+                        showPopup("Warning", "Invalid Password"); 
+                }     
         }
     };
 
     const renderTopBtn = ()=>{
         return (key != 1)?
-        <button
-            type="button"
-            onClick={()=>TopBtnOnClickEvent()}
-            className="btn btn-outline-light">
-            <Icon icon={faChevronLeft} size="1x" color="#FFFFFF"/>
-        </button>:
-        <Link to="/signin">
-            <button type="button" className="btn btn-outline-light">
+            <Button onClick={()=>TopBtnOnClickEvent()} type="outline-light" size="">
                 <Icon icon={faChevronLeft} size="1x" color="#FFFFFF"/>
-            </button>
-        </Link>;
+            </Button>:
+            <Button isLink={true} path="/signin" type="outline-light" size="">
+                <Icon icon={faChevronLeft} size="1x" color="#FFFFFF"/>
+            </Button>;
     };
     
     const renderBottomBtn = ()=>{
-        if (key == 3)
+        if (key < 4)
             return (
-                <button
-                    type="button"
-                    onClick={()=>BottomBtnOnClickEvent()}
-                    className="btn btn-success btn-lg btn-block">
-                    Authenticate Email
-                </button>
-            );
-        else if (key == 1 || key == 2)
-            return (
-                <button
-                    type="button"
-                    onClick={()=>BottomBtnOnClickEvent()}
-                    className="btn btn-success btn-lg btn-block">
+                <Button onClick={BottomBtnOnClickEvent}>
                     Next
-                </button>
+                </Button>
             );
         else
-            return (
+            return (isAuthenticated)?
                 <>
-                <p className="center-text">
-                    By confirming,<br/>
-                    I agree to the terms given by Eat!T
-                </p>
-                    <Link to="/signin">
-                        <button type="button" className="btn btn-success btn-lg btn-block">
-                            Confirm
-                        </button>
-                    </Link>
-                </>
-            );
+                    <p className="center-text">
+                        By confirming,<br/>
+                        I agree to the terms given by Eat!T
+                    </p>
+                    <Button isLink={true} path="/signin">
+                        Confirm
+                    </Button>
+                </>:
+                <>
+                    <p className="center-text">
+                        Please Authenticate your email
+                    </p>
+                </>;
     };  
 
     return (
         <div id="signup">
             <header>
                 {renderTopBtn()}
+                <h3><span className="badge badge-warning">{key} / 4</span></h3>
             </header>
             <div className="main-content">
-                {renderTabs()}
+                <Tabs>
+                    <Tab activeKey={key} select_key={4}>
+                         <label for="exampleFormControlSelect1">Authentication</label>
+                        <Button onClick={()=>SignUp(
+                            Inputs,
+                            ()=>showPopup("Pin Number Sent", "Please Check your email")
+                            ,showPopup
+                        )}>
+                            Send Authentication Pin to Email
+                        </Button>
+                        <br/>
+                        <Input value={pin} setValue={setPin} placeholder={"Authentication Pin"}/>
+                        <Button onClick={()=>AuthenticateEmail(
+                            email, pin,
+                            ()=>{
+                                showPopup("Success", "Your Email has been successfully authenticated.");
+                                setIsAuthenticated(true);
+                            },showPopup
+                        )}>
+                            Authenticate Email
+                        </Button>
+                    </Tab>
+                    <Tab activeKey={key} select_key={3}>
+                        <label for="exampleFormControlSelect1">Confirm Your Information</label>
+                        <Input value={school} readOnly={true}/>
+                        <Input value={schoolID} readOnly={true}/>
+                        <Input value={username} readOnly={true}/>
+                        <Input value={email} readOnly={true}/>
+                        <Input value={`${firstName} ${lastName}`} readOnly={true}/>
+                    </Tab>
+                    <Tab activeKey={key} select_key={2}>
+                        <label for="exampleFormControlSelect1">Secondary Information</label>
+                        <Input value={schoolID} setValue={setSchoolID} placeholder={"School ID Number"}/>
+                        <Input value={firstName} setValue={setFirstName} placeholder={"First Name"}/>
+                        <Input value={lastName} setValue={setLastName} placeholder={"Last Name"}/>
+                        <Button onClick={()=>{
+                            setTermsRead(true);
+                            showPopup(
+                                 "Eat!T Terms",
+                                 `Eat!T utilizes school identification numbers and names
+                                  to identify the cutsomers when they pick up their own food.
+                                 You are to use your own identification number and 
+                                 show up and pick the food when the order is complete.`
+                            );
+                        }} type="info">
+                            View Eat!T Terms
+                        </Button>
+                    </Tab>
+                    <Tab activeKey={key} select_key={1}>
+                        <SelectSchool setSchool={setSchool} setDomain={setDomain}/>
+                        <label for="exampleFormControlSelect1">Primary Information</label>
+                        <Input value={username} setValue={setUsername} placeholder={"Username"}/>
+                        <Input value={email} placeholder={"Email auto completion"} readOnly={true}/>
+                        <Input value={password} type={"password"} setValue={setPassword} placeholder={"Password"}/>
+                        <Button
+                            onClick={()=>showPopup(
+                                "Password Policy",
+                                `Password Must be at least 8 characters
+                                 and must contain at least one uppercase, numbers, and no white space.`
+                            )} type="info">
+                            View Password Policy
+                        </Button>
+                    </Tab>
+                </Tabs>
                 <section>
                     {renderBottomBtn()}
                 </section>

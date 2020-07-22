@@ -1,15 +1,20 @@
 import React from 'react';
-import {NavLink as Link} from 'react-router-dom';
-import {UserInfoHooks} from '../hooks';
+import {Login, ProperizeInput, ClearWhiteSpace, IsEmptyInput} from '../funcs';
+import {UserInfoHooks, Popuphooks} from '../hooks';
+import {SelectSchool, Input, Button, Popup} from '../components';
 import Logo from '../assets/images/logo.png';
 
 const Signin = (props)=>{
     const {onSignin} = props;
+
     const {
-        username, setUsername,
-        password, setPassword,
-        school, setSchool
+        username, email, password, domain,
+        setPassword, setSchool, setUsername, setDomain,
     } = UserInfoHooks();
+    let {
+        show, popupMessage, popupTitle,
+        showPopup, Close
+    } = Popuphooks();
 
     return (    
         <div id="signin">
@@ -17,42 +22,35 @@ const Signin = (props)=>{
                 <img src={Logo} alt="logo"/>
             </header>
             <div className="main-content">
-                <div className="input-group mb-2">
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={username}
-                        onChange={e=>setUsername(e.target.value)}
-                        placeholder="Username"
-                        aria-describedby="button-addon1"/>
-                </div>
-                <div className="input-group mb-2">
-                    <input
-                        type="password"
-                        className="form-control"
-                        value={password}
-                        onChange={e=>setPassword(e.target.value)}
-                        placeholder="Password"
-                        aria-describedby="button-addon1"/>
-                </div>
-                <Link to="/forgotpassword">
-                    <button type="button" className="btn btn-success btn-lg btn-block">
-                        Find Password
-                    </button>
-                </Link>
+                <SelectSchool setSchool={setSchool} setDomain={setDomain}/>
+                <Input value={username} setValue={setUsername} placeholder={"Username"}/>
+                <Input value={password} type={"password"} setValue={setPassword} placeholder={"Password"}/>
+                <Button isLink={true} path="/forgotpassword">
+                    Find Password
+                </Button>
                 <br/>
-                <button
-                    type="button"
-                    onClick={()=>onSignin()}
-                    className="btn btn-success btn-lg btn-block">
+                <Button onClick={()=>{
+                    if (IsEmptyInput(domain))
+                        showPopup("Warning", "Please choose school.");
+                    else if (IsEmptyInput(username) || IsEmptyInput(password))
+                        showPopup("Warning", "Empty inputs");
+                    else{
+                        ProperizeInput(email);
+                        ClearWhiteSpace(password);
+                        Login(email, password, onSignin, showPopup);
+                    }
+                }}>
                     Sign In
-                </button>
-                <Link to="/signup">
-                    <button type="button" className="btn btn-success btn-lg btn-block">
-                        Sign Up
-                    </button>
-                </Link>
+                </Button>
+                <Button isLink={true} path="/signup">
+                    Sign Up
+                </Button>
             </div>
+            <footer>
+                <Popup show={show} header={popupTitle} onClose={Close}>
+                    {popupMessage}
+                </Popup>
+            </footer>
         </div>
     );
 };
