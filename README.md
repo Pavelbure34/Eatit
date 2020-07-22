@@ -17,29 +17,29 @@ These are Sign Up Screens.
 <div style="width:95%; margin: 1px auto 1px auto;">
     <img
         src="./src/assets/screenShots/signUp1.png"
-        width="33.3%"
+        width="30%"
         style="margin: 1px; display:inline-block;"
         alt="sign-up-page"/>
     <img
         src="./src/assets/screenShots/signUp2.png"
-        width="33.3%"
+        width="30%"
         style="margin: 1px; display:inline-block;"
         alt="sign-up-page"/>
     <img
         src="./src/assets/screenShots/signUp3.png"
-        width="33.3%"
+        width="30%"
         style="margin: 1px; display:inline-block;"
         alt="sign-up-page"/>
 </div>
 <div style="width:95%; margin: 1px auto 1px auto;">
     <img
         src="./src/assets/screenShots/signUp4.png"
-        width="33.3%"
+        width="30%"
         style="margin: 1px; display:inline-block;"
         alt="sign-up-page"/>
     <img
         src="./src/assets/screenShots/signUp5.png"
-        width="33.3%"
+        width="30%"
         style="margin: 1px; display:inline-block;"
         alt="sign-up-page"/>
 </div>
