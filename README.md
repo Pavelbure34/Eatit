@@ -9,7 +9,7 @@ will be updated as more pages are complete.
 <div style="width:95%; margin: 1px auto 1px auto;">
     <img
         src="./src/assets/screenShots/signIn.png"
-        width="33.3%"
+        width="30%"
         style="margin: 1px; display:inline-block;"
         alt="sign-in-page"/>
     <img
