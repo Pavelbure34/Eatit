@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {
     IsEmptyInput, IsPasswordSafe, ProperizeInput,
-    SendPinNumberToEmail, AuthenticateEmail,
-    ClearWhiteSpace, SignUp
+    AuthenticateEmail, ClearWhiteSpace, SignUp
 } from '../funcs';
 import {UserInfoHooks, AuthenHooks, Popuphooks} from '../hooks';
 import {
@@ -53,10 +52,8 @@ const Signup = ()=>{
                 if (IsEmptyInput(pin))
                     showPopup("Warning", "Empty Inputs");
                 else
-                    if (isAuthenticated){
-                        
-                        setKey(key + 1);
-                    }   
+                    if (isAuthenticated)
+                        setKey(key + 1);   
                 break;
             case 3:
                 setKey(key + 1);

@@ -13,13 +13,10 @@ import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
 const ForgotPassword = ()=>{
     const [key, setKey] = useState(1);
-    const [confirmPassword, setConfirmPassword] = useState('');
     
     const {
-        username, email, firstName, lastName, 
-        password, schoolID, school, 
-        setUsername, setDomain, setFirstName, setLastName,
-        setPassword, setSchoolID, setSchool
+        username, email, password, domain,
+        setUsername, setDomain, setPassword, setSchool
     } = UserInfoHooks();
     const {
         pin, setPin,
@@ -47,28 +44,19 @@ const ForgotPassword = ()=>{
             case 3:
                 break;
             case 2:
-                setKey(key + 1);
-                // if (IsEmptyInput(password)){
-                //     showPopup( "Warning", "Empty Inputs");
-                // }else{
-                //     if (IsPasswordSafe(password))//check out for password security
-                //         setKey(key + 1);
-                //     else
-                //         showPopup( "Warning", "Invalid Password");
-                // }   
+                if (IsEmptyInput(pin) || IsEmptyInput(password))
+                    showPopup("Warning", "Empty Inputs");
+                else
+                    if (isAuthenticated)
+                        setKey(key + 1);   
                 break;
             default:
-                setKey(key + 1);
-                // if (IsEmptyInput(pin) || IsEmptyInput(username) || IsEmptyInput(email)){
-                //     showPopup( "Warning", "Empty Inputs");
-                // }else{
-                //     //authenticate email
-                //     setUsername(ProperizeInput(username));
-                //     setSchoolID(schoolID.trim());
-                //     setFirstName(ProperizeInput(firstName));
-                //     setLastName(ProperizeInput(lastName));
-                //     setKey(key + 1);
-                // }   
+                if (IsEmptyInput(domain))
+                    showPopup("Warning", "Please choose school.");
+                else if (IsEmptyInput(username))
+                    showPopup("Warning", "Empty inputs");
+                else
+                    setKey(key + 1);
                 break;
         }
     };
@@ -84,7 +72,7 @@ const ForgotPassword = ()=>{
     };
     
     const renderBottomBtn = ()=>{
-        if (key < 4){
+        if (key < 3){
             // let func = null;
             // if (key == 1){
             //     if (isAuthenticated)
@@ -111,18 +99,27 @@ const ForgotPassword = ()=>{
         <div id="forgotpassword">
             <header>
                 {renderTopBtn()}
-                <h3><span className="badge badge-warning">{key} / 4</span></h3>
+                <h3><span className="badge badge-warning">{key} / 3</span></h3>
             </header>
             <div className="main-content">
                 <Tabs>
-                    <Tab activeKey={key} select_key={4}>
+                    <Tab activeKey={key} select_key={3}>
                         <label for="exampleFormControlSelect1">Password Recovery Success</label>
                         <p>Please sign in.</p>
                     </Tab>
-                    <Tab activeKey={key} select_key={3}>
+                    <Tab activeKey={key} select_key={2}>
+                        <label for="exampleFormControlSelect1">Authentication</label>
+                        <Button onClick={()=>SendPinNumberToEmail(
+                            email,
+                            ()=>showPopup("Pin Number Sent", "Please Check your email")
+                            ,showPopup
+                        )}>
+                            Send Authentication Pin to Email
+                        </Button>
+                        <br/>
                         <label for="exampleFormControlSelect1">Reset your Password</label>
+                        <Input value={pin} setValue={setPin} placeholder={"Authentication Pin"}/>
                         <Input value={password} type={"password"} setValue={setPassword} placeholder={"Password"}/>
-                        <Input value={confirmPassword} type={"password"} setValue={setConfirmPassword} placeholder={"Confirm Password"}/>
                         <Button
                             onClick={()=>showPopup(
                                 "Password Policy",
@@ -131,18 +128,6 @@ const ForgotPassword = ()=>{
                             )} type="info">
                             View Password Policy
                         </Button>
-                    </Tab>
-                    <Tab activeKey={key} select_key={2}>
-                        <label for="exampleFormControlSelect1">Authentication</label>
-                        <Button onClick={()=>SendPinNumberToEmail(
-                            email, password,
-                            ()=>showPopup("Pin Number Sent", "Please Check your email")
-                            ,showPopup
-                        )}>
-                            Send Authentication Pin to Email
-                        </Button>
-                        <br/>
-                        <Input value={pin} setValue={setPin} placeholder={"Authentication Pin"}/>
                         <Button onClick={()=>AuthenticateEmail(
                             email, pin,
                             ()=>{
@@ -150,7 +135,7 @@ const ForgotPassword = ()=>{
                                 setIsAuthenticated(true);
                             },showPopup
                         )}>
-                            Authenticate Email
+                            Reset Password
                         </Button>
                     </Tab>
                    <Tab activeKey={key} select_key={1}>

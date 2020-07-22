@@ -1,11 +1,5 @@
 import {Auth} from 'aws-amplify';
 
-const SendPinNumberToEmail = (email, password, onSuccess, onFail)=>{
-    Auth.signUp(email, password)
-    .then(()=>onSuccess())
-    .catch(err=>onFail("Warning", err.message));  
-};
-
 const SignUp = (inputs, onSuccess, onFail)=>{
     const {
         firstName, lastName, schoolID, school,
@@ -38,8 +32,10 @@ const Login = (email, password, onSuccess, onFail)=>{
     .catch(err=>onFail("Warning", err.message));  
 };
 
-const Logout = (onSucess)=>{
-    Auth.signOut().then(()=>onSucess);
+const Logout = (onSuccess, onFail)=>{
+    Auth.signOut()
+    .then(()=>onSuccess())
+    .catch(err=>onFail("Warning", err.message));  
 };
 
-export {SendPinNumberToEmail, AuthenticateEmail, Login, SignUp, Logout};
+export {AuthenticateEmail, Login, SignUp, Logout};
