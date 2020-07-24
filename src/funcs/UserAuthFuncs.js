@@ -33,10 +33,20 @@ const Login = (email, password, onSuccess, onFail)=>{
     .catch(err=>onFail("Warning", err.message));  
 };
 
+const UpdateProfile = (name, family_name)=>{
+    // let user = await Auth.currentAuthenticatedUser();
+    // let result = await Auth.updateUserAttributes(user, {
+    //     'name': name,
+    //     'family_name': family_name
+    // });
+
+    // return result;
+};
+
 const Logout = (onSuccess, onFail)=>{
     Auth.signOut()
     .then(()=>onSuccess())
     .catch(err=>onFail("Warning", err.message));  
 };
 
-export {AuthenticateEmail, Login, SignUp, Logout};
+export {AuthenticateEmail, Login, SignUp, Logout, UpdateProfile};

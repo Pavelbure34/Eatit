@@ -2,9 +2,10 @@ import {Auth} from 'aws-amplify';
 
 const ChangePassword = (oldPassword, newPassword, onSuccess, onFail)=>{
     Auth.currentAuthenticatedUser()
-    .then(user => Auth.changePassword(user, oldPassword, newPassword))
-    .then(() => onSuccess())
-    .catch(err=>onFail("Warning", err.message));
+    .then(user => {
+        Auth.changePassword(user, oldPassword, newPassword);
+        onSuccess();
+    }).catch(err=>onFail("Warning", err.message));
 };
 
 const SendPinNumberToEmail = (email, onSuccess, onFail)=>{

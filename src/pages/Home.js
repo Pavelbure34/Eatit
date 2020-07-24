@@ -16,10 +16,11 @@ const Home = (props)=>{
     return (
         <div id="home">
             <header>
-                <div>
+                <NavBar name={name} family_name={family_name}/>
+                {/* <div>
                     <Icon icon={faUserCircle} size="1x" color="#FFFFFF"/>
                     <b><p>{name} {family_name}</p></b>
-                </div>
+                </div> */}
             </header>
             <div className="main-content">
                 <section>
@@ -43,7 +44,6 @@ const Home = (props)=>{
                 </section>
             </div>
             <footer>
-                {/* <NavBar name={name} family_name={family_name}/> */}
                 <Popup show={show} header={popupTitle} onClose={Close}>
                     {popupMessage}
                 </Popup>

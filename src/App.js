@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom
 import {IonApp} from '@ionic/react';
 import {
   Signin, Signup, ForgotPasswordPage,
-  Home
+  Home, ChangePasswordPage, UserProfile
 } from './pages';
 
 /* Core CSS required for Ionic components to work properly */
@@ -45,6 +45,12 @@ const App = ()=>{
     <>
       <Route exact path="/home">
         <Home onSignOut={()=>setIsSignedIn(false)} user={userData}/>
+      </Route>
+      <Route exact path="/changepassword">
+        <ChangePasswordPage user={userData}/>
+      </Route>
+      <Route exact path="/userprofile">
+        <UserProfile user={userData}/>
       </Route>
       <Redirect to="/home"/>
     </>:

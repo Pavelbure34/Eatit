@@ -1,7 +1,8 @@
-/*before signing up*/
 #signin,
 #signup,
 #forgotpassword,
+#changepassword,
+#userprofile,
 #home{
     display: grid;
     width: 100%;
@@ -17,6 +18,37 @@
         width: 95%;
         @media (min-width: $tablet-break) {
             width: 70%;
+        }
+    }
+}
+
+#signup,
+#forgotpassword,
+#changepassword,
+#userprofile,
+#home{
+    grid-template-rows: 10vh 85vh 5vh;
+
+    .main-content{
+        margin: 0 auto 0 auto;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+#signup,
+#forgotpassword{
+    header{
+        display:flex;
+        padding: 1vh 2vw 1vh 2vw;
+        justify-content: space-between;
+        align-items: center;
+       
+        section{
+            .btn{
+                border: 1px solid #FFFFFF;
+            }
         }
     }
 }
@@ -44,45 +76,21 @@
     }
 }
 
-
-#signup,
-#forgotpassword,
-#home{
-    grid-template-rows: 10vh 80vh 10vh;
-
-    .main-content{
-        margin: 0 auto 0 auto;
-        display:flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-}
-
 #home{
    header{
-       display:flex;
-       justify-content: center;
-       align-items: center;
+    //    display:flex;
+    //    justify-content: center;
+    //    align-items: center;
 
-       div{
-            display:flex;
-            p{ margin:0 0 0 2vw; }
-       }
+    //    div{
+    //         display:flex;
+    //         p{ margin:0 0 0 2vw; }
+    //    }
    }
 }
 
-#signup,
-#forgotpassword{
-    header{
-        display:flex;
-        padding: 1vh 2vw 1vh 2vw;
-        justify-content: space-between;
-        align-items: center;
-       
-        section{
-            .btn{
-                border: 1px solid #FFFFFF;
-            }
-        }
+#changepassword{
+    #main-content-form{
+        margin-top:3vh;
     }
 }
