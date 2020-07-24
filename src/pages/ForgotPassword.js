@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {
-    IsEmptyInput, IsPasswordSafe, ProperizeInput,
-    SendPinNumberToEmail, AuthenticateEmail
+    IsEmptyInput, ProperizeInput,
+    SendPinNumberToEmail,ForgotPassword
 } from '../funcs';
 import {UserInfoHooks, AuthenHooks, Popuphooks} from '../hooks';
 import {
@@ -11,12 +11,12 @@ import {
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
 
-const ForgotPassword = ()=>{
+const ForgotPasswordPage = ()=>{
     const [key, setKey] = useState(1);
     
     const {
         username, email, password, domain,
-        setUsername, setDomain, setPassword, setSchool
+        setUsername, setDomain, setPassword, setSchool, setEmail
     } = UserInfoHooks();
     const {
         pin, setPin,
@@ -46,9 +46,8 @@ const ForgotPassword = ()=>{
             case 2:
                 if (IsEmptyInput(pin) || IsEmptyInput(password))
                     showPopup("Warning", "Empty Inputs");
-                else
-                    if (isAuthenticated)
-                        setKey(key + 1);   
+                else if (isAuthenticated)
+                    setKey(key + 1);   
                 break;
             default:
                 if (IsEmptyInput(domain))
@@ -56,13 +55,20 @@ const ForgotPassword = ()=>{
                 else if (IsEmptyInput(username))
                     showPopup("Warning", "Empty inputs");
                 else
-                    setKey(key + 1);
+                    SendPinNumberToEmail(
+                        ProperizeInput(email),
+                        ()=>{
+                            showPopup("Pin Number Sent", "Please Check your email");
+                            setEmail(ProperizeInput(email));
+                            setKey(key + 1);
+                        },showPopup
+                    );
                 break;
         }
     };
 
     const renderTopBtn = ()=>{
-        return (key != 1)?
+        return (key !== 1)?
             <Button onClick={()=>TopBtnOnClickEvent()} type="outline-light" size="">
                 <Icon icon={faChevronLeft} size="1x" color="#FFFFFF"/>
             </Button>:
@@ -72,22 +78,19 @@ const ForgotPassword = ()=>{
     };
     
     const renderBottomBtn = ()=>{
-        if (key < 3){
-            // let func = null;
-            // if (key == 1){
-            //     if (isAuthenticated)
-            //         func = ()=>BottomBtnOnClickEvent();
-            //     else
-            //         func = ()=>showPopup("Warning", "Email not authenticated yet")
-            // }else
-            //     func = ()=>setKey(key + 1);
-
+        if (key === 1 || (key === 2 && isAuthenticated)){
             return (
-                <Button onClick={()=>setKey(key + 1)}>
+                <Button onClick={()=>BottomBtnOnClickEvent()}>
                     Next
                 </Button>
             );
-        } else
+        } else if (key === 2 && !isAuthenticated)
+            return (
+                <p className="center-text">
+                    Please authenticate your email
+                </p>
+            ); 
+        else
             return (
                 <Button isLink={true} path="/signin">
                     Confirm
@@ -114,26 +117,27 @@ const ForgotPassword = ()=>{
                             ()=>showPopup("Pin Number Sent", "Please Check your email")
                             ,showPopup
                         )}>
-                            Send Authentication Pin to Email
+                            Re-send Authentication Pin
                         </Button>
                         <br/>
                         <label for="exampleFormControlSelect1">Reset your Password</label>
                         <Input value={pin} setValue={setPin} placeholder={"Authentication Pin"}/>
                         <Input value={password} type={"password"} setValue={setPassword} placeholder={"Password"}/>
                         <Button
+                            type="info"
                             onClick={()=>showPopup(
                                 "Password Policy",
                                 `Password Must be at least 8 characters
                                  and must contain at least one uppercase and numbers.`
-                            )} type="info">
+                            )}>
                             View Password Policy
                         </Button>
-                        <Button onClick={()=>AuthenticateEmail(
-                            email, pin,
+                        <Button onClick={()=>ForgotPassword(
+                            email, pin, password,
                             ()=>{
-                                showPopup("Success", "Your Email has been successfully authenticated.");
+                                showPopup("Success", "Your password has been successfully reset.");
                                 setIsAuthenticated(true);
-                            },showPopup
+                            }, showPopup
                         )}>
                             Reset Password
                         </Button>
@@ -158,4 +162,4 @@ const ForgotPassword = ()=>{
     );    
 };
 
-export {ForgotPassword};
+export {ForgotPasswordPage};

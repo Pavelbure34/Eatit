@@ -16,7 +16,7 @@ const Signup = ()=>{
 
     const {
         username, email, firstName, lastName, 
-        domain, password, schoolID, school, 
+        domain, password, schoolID, school, userType,
         setUsername, setDomain, setFirstName, setLastName,
         setPassword, setSchoolID, setSchool
     } = UserInfoHooks();
@@ -31,7 +31,7 @@ const Signup = ()=>{
 
     let Inputs = {
         username, email, firstName, lastName,
-        password, schoolID, school
+        password, schoolID, school, userType
     };
 
     const TopBtnOnClickEvent = ()=>{
@@ -40,6 +40,7 @@ const Signup = ()=>{
             case 3:
             case 2:
                 setKey(key - 1);
+                break;
             default:
                 //key == 1, button is link button.
                 break;
@@ -87,7 +88,7 @@ const Signup = ()=>{
     };
 
     const renderTopBtn = ()=>{
-        return (key != 1)?
+        return (key !== 1)?
             <Button onClick={()=>TopBtnOnClickEvent()} type="outline-light" size="">
                 <Icon icon={faChevronLeft} size="1x" color="#FFFFFF"/>
             </Button>:

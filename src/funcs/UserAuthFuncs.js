@@ -3,7 +3,7 @@ import {Auth} from 'aws-amplify';
 const SignUp = (inputs, onSuccess, onFail)=>{
     const {
         firstName, lastName, schoolID, school,
-        email, username, password
+        email, username, password, userType
     } = inputs;
 
     Auth.signUp({
@@ -14,7 +14,8 @@ const SignUp = (inputs, onSuccess, onFail)=>{
             family_name: lastName,
             'custom:username':username,
             'custom:school':school,
-            'custom:schoolid':schoolID
+            'custom:schoolid':schoolID,
+            'custom:userType': userType
         }
     }).then(()=>onSuccess())
     .catch(err=>onFail("Warning", err.message));      

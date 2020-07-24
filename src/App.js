@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom
 import {IonApp} from '@ionic/react';
 // import { IonApp, IonRouterOutlet } from '@ionic/react';
 // import { IonReactRouter } from '@ionic/react-router';
-import {Signin, Signup, ForgotPassword} from './pages';
+import {Signin, Signup, ForgotPasswordPage} from './pages';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -26,11 +26,10 @@ import './theme/variables.scss';
 
 const App = ()=>{
   const [isSignedIn, setIsSignedIn] = useState(false);
-  // const [permission, setPersmission] = useState(0);
 
-  useEffect(()=>{
-    setIsSignedIn(false);
-  });
+  // useEffect(()=>{
+  //   setIsSignedIn(false);
+  // });
 
   const renderPages = ()=>{
     return (isSignedIn)?
@@ -38,13 +37,13 @@ const App = ()=>{
     </>:
     <>
       <Route exact path="/signin">
-        <Signin onSignin={()=>alert("signin!")}/>
+        <Signin onSignin={()=>setIsSignedIn(true)}/>
       </Route>
       <Route exact path="/signup">
         <Signup/>
       </Route>
       <Route exact path="/forgotpassword">
-        <ForgotPassword/>
+        <ForgotPasswordPage/>
       </Route>
       <Redirect to="/signin"/>
     </>;

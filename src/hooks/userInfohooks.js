@@ -10,10 +10,11 @@ const UserInfoHooks = ()=>{
     const [password, setPassword] = useState('');
     const [schoolID, setSchoolID] = useState('');
     const [school, setSchool] = useState('');
+    const [userType, setUserType] = useState('user');
 
     useEffect(()=>{
         setEmail(ProperizeInput(username) + domain);
-    },[domain, username, setEmail, ProperizeInput]);
+    },[domain, username, setEmail]);
 
     return {
         username, setUsername,
@@ -23,7 +24,8 @@ const UserInfoHooks = ()=>{
         email, setEmail,
         password, setPassword,
         schoolID, setSchoolID,
-        school, setSchool
+        school, setSchool,
+        userType, setUserType
     };
 };
 
