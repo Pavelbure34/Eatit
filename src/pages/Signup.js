@@ -164,16 +164,18 @@ const Signup = ()=>{
                         <Input value={schoolID} setValue={setSchoolID} placeholder={"School ID Number"}/>
                         <Input value={firstName} setValue={setFirstName} placeholder={"First Name"}/>
                         <Input value={lastName} setValue={setLastName} placeholder={"Last Name"}/>
-                        <Button onClick={()=>{
-                            setTermsRead(true);
-                            showPopup(
-                                 "Eat!T Terms",
-                                 `Eat!T utilizes school identification numbers and names
-                                  to identify the cutsomers when they pick up their own food.
-                                 You are to use your own identification number and 
-                                 show up and pick the food when the order is complete.`
-                            );
-                        }} type="info">
+                        <Button
+                            type="info"
+                            onClick={()=>{
+                                setTermsRead(true);
+                                showPopup(
+                                    "Eat!T Terms",
+                                    `Eat!T utilizes school identification numbers and names
+                                    to identify the cutsomers when they pick up their own food.
+                                    You are to use your own identification number and 
+                                    show up and pick the food when the order is complete.`
+                                );
+                            }}>
                             View Eat!T Terms
                         </Button>
                     </Tab>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {CheckCurrentUser} from './funcs';
+import {Auth} from 'aws-amplify';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import {IonApp} from '@ionic/react';
 import {
@@ -30,16 +30,21 @@ const App = ()=>{
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userData, setUserData] = useState({});
 
-  console.log(userData);
+  // console.log(userData);
   useEffect(()=>{
-    CheckCurrentUser(()=>setIsSignedIn(true), setUserData);
-  },[setUserData]);
+    Auth.currentAuthenticatedUser()
+    .then(user => {
+        const data = user.attributes; 
+        setUserData(data);
+        setIsSignedIn(true);
+    }).catch(err => console.log(err.message));
+  },[setUserData, setIsSignedIn]);
 
   const renderPages = ()=>{
     return (isSignedIn)?
     <>
       <Route exact path="/home">
-        <Home onSignOut={()=>setIsSignedIn(false)}/>
+        <Home onSignOut={()=>setIsSignedIn(false)} user={userData}/>
       </Route>
       <Redirect to="/home"/>
     </>:

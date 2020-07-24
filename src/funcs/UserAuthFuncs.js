@@ -39,14 +39,4 @@ const Logout = (onSuccess, onFail)=>{
     .catch(err=>onFail("Warning", err.message));  
 };
 
-const CheckCurrentUser = (onSucess, setUserData)=>{
-    Auth.currentAuthenticatedUser()
-    .then(user => {
-        const data = user.attributes; 
-        console.log(data);
-        setUserData(data);
-        onSucess();
-    });
-};
-
-export {AuthenticateEmail, Login, SignUp, Logout, CheckCurrentUser};
+export {AuthenticateEmail, Login, SignUp, Logout};
