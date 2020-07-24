@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import {CheckCurrentUser} from './funcs';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import {IonApp} from '@ionic/react';
-// import { IonApp, IonRouterOutlet } from '@ionic/react';
-// import { IonReactRouter } from '@ionic/react-router';
-import {Signin, Signup, ForgotPasswordPage} from './pages';
+import {
+  Signin, Signup, ForgotPasswordPage,
+  Home
+} from './pages';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -26,14 +28,21 @@ import './theme/variables.scss';
 
 const App = ()=>{
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [userData, setUserData] = useState({});
 
-  // useEffect(()=>{
-  //   setIsSignedIn(false);
-  // });
+  useEffect(()=>{
+    CheckCurrentUser(()=>{
+      setIsSignedIn(true)
+    });
+  });
 
   const renderPages = ()=>{
     return (isSignedIn)?
     <>
+      <Route exact path="/home">
+        <Home onSignOut={()=>setIsSignedIn(false)}/>
+      </Route>
+      <Redirect to="/home"/>
     </>:
     <>
       <Route exact path="/signin">
