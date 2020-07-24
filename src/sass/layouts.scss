@@ -45,7 +45,8 @@
 }
 
 #signup,
-#forgotpassword{
+#forgotpassword,
+#home{
     grid-template-rows: 10vh 80vh 10vh;
 
     header{
@@ -63,9 +64,19 @@
     }
 
     .main-content{
+        margin: 0 auto 0 auto;
+    }
+}
+
+#home{
+
+}
+
+#signup,
+#forgotpassword{
+    .main-content{
         display:flex;
         flex-direction: column;
         justify-content: space-between;
-        margin: 0 auto 0 auto;
     }
 }

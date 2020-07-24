@@ -30,11 +30,10 @@ const App = ()=>{
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userData, setUserData] = useState({});
 
+  console.log(userData);
   useEffect(()=>{
-    CheckCurrentUser(()=>{
-      setIsSignedIn(true)
-    });
-  });
+    CheckCurrentUser(()=>setIsSignedIn(true), setUserData);
+  },[setUserData]);
 
   const renderPages = ()=>{
     return (isSignedIn)?

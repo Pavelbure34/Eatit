@@ -14,12 +14,12 @@ const Home = (props)=>{
     return (
         <div id="home">
             <header>
-
-            </header>
-            <div className="main-content">
                 <Button onClick={()=>Logout(onSignOut,showPopup)}>
                     Sign Out
                 </Button>
+            </header>
+            <div className="main-content">
+                
             </div>
             <footer>
                 <Popup show={show} header={popupTitle} onClose={Close}>

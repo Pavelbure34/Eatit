@@ -39,10 +39,12 @@ const Logout = (onSuccess, onFail)=>{
     .catch(err=>onFail("Warning", err.message));  
 };
 
-const CheckCurrentUser = (onSucess)=>{
+const CheckCurrentUser = (onSucess, setUserData)=>{
     Auth.currentAuthenticatedUser()
     .then(user => {
-        console.log(user);
+        const data = user.attributes; 
+        console.log(data);
+        setUserData(data);
         onSucess();
     });
 };
