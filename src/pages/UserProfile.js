@@ -9,12 +9,6 @@ const UserProfile = (props)=>{
         name,
         family_name,
         email,
-        // custom:{
-        //     school,
-        //     schoolid,
-        //     username,
-        //     userType
-        // }
         custom:school,
         custom:schoolid,
         custom:username,

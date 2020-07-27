@@ -9,13 +9,15 @@
     }
 
     #basic-navbar-nav{
-        // position: fixed;
-        // height:auto;
-        // left:0;
-        // right:0;
-        // z-index: 999;
-        // padding: 2vh 2vw 2vh 2vw;
-        // background-color: inherit;
+        position: fixed;
+        top: 0;
+        width:100vw;
+        height: 100vh;
+        left:0;
+        right:0;
+        z-index: 999;
+        padding: 2vw 2vw 0 2vw;
+        background-color: #ffc409;
     }
 
     .nav-link{

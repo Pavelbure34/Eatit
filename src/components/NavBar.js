@@ -17,7 +17,7 @@ const NavBar = (props)=>{
             <Toggle aria-controls="basic-navbar-nav" className="top-nav-bar-toggle"/>
             <Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    {/* <Toggle aria-controls="basic-navbar-nav" className="top-nav-bar-toggle"/> */}
+                    <Toggle aria-controls="basic-navbar-nav" className="top-nav-bar-toggle"/>
                     <Link to="/home" className="nav-link">Home</Link>
                     <Link to="/userprofile" className="nav-link">User Profile</Link>
                     <Link to="/myorders" className="nav-link">My Order(s)</Link>
