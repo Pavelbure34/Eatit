@@ -1,10 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import {Auth} from 'aws-amplify';
-import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 import {IonApp} from '@ionic/react';
 import {
-  Signin, Signup, ForgotPasswordPage,
-  Home, ChangePasswordPage, UserProfile
+  Signin,
+  Signup,
+  ForgotPasswordPage,
+  Home,
+  ChangePasswordPage,
+  UserProfile
 } from './pages';
 
 /* Core CSS required for Ionic components to work properly */

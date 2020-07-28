@@ -4,6 +4,11 @@ import {UserInfoHooks, Popuphooks} from '../hooks';
 import {SelectSchool, Input, Button, Popup} from '../components';
 import Logo from '../assets/images/logo.png';
 
+/*
+    This page is default page for unauthenticated device when
+    the app is turned on. This page is Sign In page.
+*/
+
 const Signin = (props)=>{
     const {onSignin} = props;
 

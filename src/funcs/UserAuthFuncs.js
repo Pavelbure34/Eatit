@@ -2,8 +2,14 @@ import {Auth} from 'aws-amplify';
 
 const SignUp = (inputs, onSuccess, onFail)=>{
     const {
-        firstName, lastName, schoolID, school,
-        email, username, password, userType
+        firstName,
+        lastName,
+        schoolID,
+        school,
+        email,
+        username,
+        password,
+        userType
     } = inputs;
 
     Auth.signUp({

@@ -1,14 +1,29 @@
 import React, {useState} from 'react';
 import {
-    IsEmptyInput, IsPasswordSafe, ProperizeInput,
-    AuthenticateEmail, ClearWhiteSpace, SignUp
+    IsEmptyInput,
+    IsPasswordSafe,
+    ProperizeInput,
+    AuthenticateEmail,
+    ClearWhiteSpace,
+    SignUp
 } from '../funcs';
 import {UserInfoHooks, AuthenHooks, Popuphooks} from '../hooks';
 import {
-    Icon, Popup, SelectSchool, Input, Button,
-    Tabs, Tab
+    Icon,
+    Popup,
+    SelectSchool,
+    Input,
+    Button,
+    Tabs,
+    Tab
 } from '../components';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+
+/*
+    This page is Sign Up page.
+    This page allows user to sign up.
+    This page makes use of tabs and tab feature of my own custom components.
+*/
 
 const Signup = ()=>{
     const [key, setKey] = useState(1);

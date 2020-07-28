@@ -1,7 +1,16 @@
 import React, {useState} from 'react';
 import {IsEmptyInput, ChangePassword} from '../funcs';
 import {Popuphooks} from '../hooks';
-import {Popup, Input, Button, NavBar} from '../components';
+import {
+    Popup,
+    Input,
+    Button,
+    NavBar
+} from '../components';
+
+/*
+    This page allows users to Change the password.
+*/
 
 const ChangePasswordPage = (props)=>{
     const {user} = props;
@@ -11,8 +20,11 @@ const ChangePasswordPage = (props)=>{
     const [newPassword, setNewPassword] = useState('');
     
     let {
-        show, popupMessage, popupTitle,
-        showPopup, Close
+        show,
+        popupMessage,
+        popupTitle,
+        showPopup,
+        Close
     } = Popuphooks();
     
     const ButtonEvent = ()=>{

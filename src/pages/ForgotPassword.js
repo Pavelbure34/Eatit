@@ -1,30 +1,53 @@
 import React, {useState} from 'react';
 import {
-    IsEmptyInput, ProperizeInput,
-    SendPinNumberToEmail,ForgotPassword
+    IsEmptyInput,
+    ProperizeInput,
+    SendPinNumberToEmail,
+    ForgotPassword
 } from '../funcs';
 import {UserInfoHooks, AuthenHooks, Popuphooks} from '../hooks';
 import {
-    Icon, Popup, SelectSchool, Input, Button,
-    Tabs, Tab
+    Icon,
+    Popup,
+    SelectSchool,
+    Input, 
+    Button,
+    Tabs,
+    Tab
 } from '../components';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
+/*
+    This page allows users to recover the password.
+    It also makes use of tabs and tab component.
+*/
 
 const ForgotPasswordPage = ()=>{
     const [key, setKey] = useState(1);
     
     const {
-        username, email, password, domain,
-        setUsername, setDomain, setPassword, setSchool, setEmail
+        username,
+        email,
+        password,
+        domain,
+        setUsername,
+        setDomain,
+        setPassword,
+        setSchool,
+        setEmail
     } = UserInfoHooks();
     const {
-        pin, setPin,
-        isAuthenticated, setIsAuthenticated
+        pin,
+        setPin,
+        isAuthenticated,
+        setIsAuthenticated
     } = AuthenHooks();
     let {
-        show, popupMessage, popupTitle,
-        showPopup, Close
+        show,
+        popupMessage,
+        popupTitle,
+        showPopup,
+        Close
     } = Popuphooks();
     
     const TopBtnOnClickEvent = ()=>{

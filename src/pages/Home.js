@@ -1,26 +1,24 @@
 import React from 'react';
 import {Popuphooks} from '../hooks';
 import {Logout} from '../funcs';
-import {Button, Popup, NavBar, Icon} from '../components';
-import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
+import {Button, Popup, NavBar} from '../components';
 
 const Home = (props)=>{
     const {onSignOut, user} = props;
     const {name, family_name} = user;
 
     let {
-        show, popupMessage, popupTitle,
-        showPopup, Close
+        show,
+        popupMessage,
+        popupTitle,
+        showPopup,
+        Close
     } = Popuphooks();
 
     return (
         <div id="home">
             <header>
                 <NavBar name={name} family_name={family_name}/>
-                {/* <div>
-                    <Icon icon={faUserCircle} size="1x" color="#FFFFFF"/>
-                    <b><p>{name} {family_name}</p></b>
-                </div> */}
             </header>
             <div className="main-content">
                 <section>
