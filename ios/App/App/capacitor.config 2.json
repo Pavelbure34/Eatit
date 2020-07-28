@@ -1,5 +1,5 @@
 {
-  "appId": "eatit",
+  "appId": "io.ionic.starter",
   "appName": "eatit",
   "bundledWebRuntime": false,
   "npmClient": "npm",

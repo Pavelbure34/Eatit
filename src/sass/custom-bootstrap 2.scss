@@ -1,0 +1,26 @@
+#top-nav-bar{
+    #top-nav-bar-brand{
+        display:flex;
+        p{ margin:0 0 0 2vw; }
+    }
+
+    .top-nav-bar-toggle{
+        border: 1px solid #FFFFFF;
+    }
+
+    #basic-navbar-nav{
+        position: fixed;
+        top: 0;
+        width:100vw;
+        height: 100vh;
+        left:0;
+        right:0;
+        z-index: 999;
+        padding: 2vw 2vw 0 2vw;
+        background-color: #ffc409;
+    }
+
+    .nav-link{
+        text-align: center;
+    }
+}
