@@ -1,4 +1,10 @@
 <h2>Denison Enterprises Project: Eat!T</h2>
+<img
+    src="./src/assets/images/logo.png"
+    width="30%"
+    style="display:block; margin: 0 auto 1vh auto;"
+    alt="eatit-logo"
+/>
 
 ### Contents
 <ul>
