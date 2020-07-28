@@ -1,5 +1,7 @@
 {
   "name": "eatit",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }
