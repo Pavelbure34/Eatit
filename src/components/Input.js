@@ -1,10 +1,19 @@
 import React from 'react';
 
+/*
+    This is Input component.
+    This is custom Input based on Bootstrap Input.
+    It is highly customizable with placehlder, readOnly, id, value.
+*/
+
 const Input = (props)=>{
     const {
         id,
-        type = "text", placeholder = "", readOnly = false,
-        value, setValue
+        type = "text",
+        placeholder = "",
+        readOnly = false,
+        value,
+        setValue //detecting the change in the input
     } = props;
 
     return (!readOnly)?

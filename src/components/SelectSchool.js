@@ -1,6 +1,11 @@
 import React from  'react';
 import {SampleSchools as Schools} from '../data';
 
+/*
+    This is Select School component.
+    This is custom multiple option component based on Bootstrap input.
+*/
+
 const SelectSchool = (props)=>{
     const {setSchool, setDomain} = props;
 

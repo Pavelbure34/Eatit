@@ -3,6 +3,11 @@ import {Popuphooks} from '../hooks';
 import {Logout} from '../funcs';
 import {Button, Popup, NavBar} from '../components';
 
+/*
+    This home page is default page for authenticated user
+    when opening the app for the first time.
+*/
+
 const Home = (props)=>{
     const {onSignOut, user} = props;
     const {name, family_name} = user;

@@ -1,5 +1,9 @@
 import {useState} from 'react';
 
+/*
+    This file is react hook for pop ups.
+*/
+
 const Popuphooks = ()=>{
     const [show, setShow] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
@@ -13,7 +17,13 @@ const Popuphooks = ()=>{
         TurnOn();
     };
 
-    return {show, popupMessage, popupTitle, showPopup, Close};
+    return {
+        show,
+        popupMessage,
+        popupTitle,
+        showPopup,
+        Close
+    };
 };
 
 export {Popuphooks};

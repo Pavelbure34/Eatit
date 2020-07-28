@@ -1,10 +1,26 @@
 import React from 'react';
 import {Modal, Button} from 'react-bootstrap';
 
-const Popup = (props)=>{
-    const {children, header, onClose, show} = props;
+/*
+    This is Popup component.
+    This is custom Modal based on Bootstrap Modal.
+    It is highly customizable with header, content and related events.
+*/
 
-    const {Header, Title, Body, Footer} = Modal;
+const Popup = (props)=>{
+    const {
+        children,
+        header,
+        onClose,
+        show
+    } = props;
+
+    const {
+        Header,
+        Title,
+        Body,
+        Footer
+    } = Modal;
     return (
         <Modal show={show} onHide={onClose} centered>
             <Header closeButton>

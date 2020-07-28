@@ -1,5 +1,13 @@
 import {Auth} from 'aws-amplify';
 
+/*
+    SignUp -> allows users to register to the system
+    AuthenticateEmail -> send security pin to user's email for authentication
+    Login -> allows user to sign in
+    Logout -> allows user to sign out
+    UpdateProfile -> allows user to change their own profile attribute
+*/
+
 const SignUp = (inputs, onSuccess, onFail)=>{
     const {
         firstName,
@@ -55,4 +63,10 @@ const Logout = (onSuccess, onFail)=>{
     .catch(err=>onFail("Warning", err.message));  
 };
 
-export {AuthenticateEmail, Login, SignUp, Logout, UpdateProfile};
+export {
+    AuthenticateEmail,
+    Login,
+    SignUp,
+    Logout,
+    UpdateProfile
+};

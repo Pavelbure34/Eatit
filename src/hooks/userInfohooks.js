@@ -1,6 +1,10 @@
 import {useState, useEffect} from 'react';
 import {ProperizeInput} from '../funcs';
 
+/*
+    This file is react hook for user inputs for sign up and sign in.
+*/
+
 const UserInfoHooks = ()=>{
     const [username, setUsername] = useState('');
     const [domain, setDomain] = useState('');
@@ -17,15 +21,24 @@ const UserInfoHooks = ()=>{
     },[domain, username, setEmail]);
 
     return {
-        username, setUsername,
-        domain, setDomain,
-        firstName, setFirstName,
-        lastName, setLastName,
-        email, setEmail,
-        password, setPassword,
-        schoolID, setSchoolID,
-        school, setSchool,
-        userType, setUserType
+        username,
+        setUsername,
+        domain,
+        setDomain,
+        firstName,
+        setFirstName,
+        lastName,
+        setLastName,
+        email,
+        setEmail,
+        password,
+        setPassword,
+        schoolID,
+        setSchoolID,
+        school,
+        setSchool,
+        userType,
+        setUserType
     };
 };
 

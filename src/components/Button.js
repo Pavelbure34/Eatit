@@ -1,11 +1,20 @@
 import React from 'react';
 import {NavLink as Link} from 'react-router-dom';
 
+/*
+    This is Button component.
+    This is custom button based on Bootstrap button.
+    It is highly customizable with variant and size.
+*/
+
 const Button = (props)=>{
     const {
-        type = "success", size = "btn-lg btn-block",
-        onClick = null, children,
-        isLink = false, path = "/"
+        type = "success",
+        size = "btn-lg btn-block",
+        onClick = null,
+        children,
+        isLink = false,
+        path = "/"
     } = props;
 
     const renderCSS = ()=>`btn btn-${type} ${size}`;
