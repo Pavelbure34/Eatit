@@ -23,7 +23,7 @@
     "aws-amplify": "^3.0.20",
     "bootstrap": "^4.5.0",
     "ionicons": "^5.0.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.0",
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.0",
